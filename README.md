@@ -1,61 +1,8 @@
-# TP 19 — Eureka et microservice Client
-
-Implémentation des étapes 2 à 4 fournies. La Gateway (8888) et le service Voiture (8089), annoncés dans la topologie générale, restent à réaliser dans les étapes suivantes.
-
-## Prérequis
-
-- JDK 17 ou 21 recommandé et Maven 3.6.3+ dans le PATH.
-- Spring Boot 3.5.7 et Spring Cloud 2025.0.0 : versions compatibles selon la [matrice officielle](https://spring.io/projects/spring-cloud).
-- Ports 8761 et 8088 disponibles.
-
-## Compiler et tester
-
-Depuis la racine :
-
-```powershell
-mvn clean verify
-```
-
-Le test d'intégration du service Client utilise un serveur HTTP réel sur un port aléatoire, sans Eureka. Il vérifie les données initiales, le CRUD, les réponses 404 et le health check.
-
-## Démarrer
-
-Dans un premier terminal :
-
-```powershell
-mvn -pl eureka-server spring-boot:run
-```
-
-Puis dans un deuxième terminal :
-
-```powershell
-mvn -pl service-client spring-boot:run
-```
-
-Dans IntelliJ, importer le `pom.xml` racine comme projet Maven, choisir un JDK compatible et lancer `EurekaServerApplication`, puis `ClientApplication`.
-
-## Vérifier
-
-- Registre : <http://localhost:8761/>. Attendre l'apparition de `SERVICE-CLIENT` avec le statut `UP` (l'enregistrement peut prendre quelques secondes).
-- Liste : <http://localhost:8088/clients>.
-- Premier client : <http://localhost:8088/client/1> (alias `/clients/1`).
-- Santé : <http://localhost:8088/actuator/health>.
-- Console H2 : <http://localhost:8088/h2-console>, URL JDBC `jdbc:h2:mem:clients`, utilisateur `sa`, mot de passe vide.
-
-La liste contient Rabab SELIMANI (23), Amal RAMI (22) et Samir SAFI (22). La base en mémoire est recréée à chaque démarrage.
-
-| Méthode | Chemin | Résultat |
-| --- | --- | --- |
-| GET | `/clients` | Liste des clients |
-| GET | `/client/{id}` ou `/clients/{id}` | Client, ou 404 |
-| POST | `/clients` | Création, statut 201 et en-tête Location |
-| PUT | `/clients/{id}` | Modification, ou 404 |
-| DELETE | `/clients/{id}` | Suppression, statut 204, ou 404 |
-
-Exemple de création dans PowerShell :
-
-```powershell
-Invoke-RestMethod -Method Post -Uri http://localhost:8088/clients -ContentType 'application/json' -Body '{"nom":"Nouveau client","age":25}'
-```
-
-Le code suit les couches `controllers`, `services`, `repositories`, `entities`. L'export automatique du repository Data REST est désactivé pour laisser les endpoints au contrôleur. La console H2 et les identifiants vides sont prévus pour ce TP local.
+<img width="1280" height="733" alt="image" src="https://github.com/user-attachments/assets/b9887753-fb26-4416-ae03-b39397f47287" />
+<img width="475" height="508" alt="image" src="https://github.com/user-attachments/assets/0c50dd31-c512-4fb5-a247-decc697d7ea7" />
+<img width="356" height="286" alt="image" src="https://github.com/user-attachments/assets/39fc6b22-0b19-4241-b1b6-549e7744bd9a" />
+<img width="398" height="400" alt="image" src="https://github.com/user-attachments/assets/57e8154d-d8f7-4565-ad09-3206a1b5da9c" />
+<img width="404" height="303" alt="image" src="https://github.com/user-attachments/assets/ec69baef-eb0c-4bd9-8846-c37b034885a9" />
+<img width="354" height="300" alt="image" src="https://github.com/user-attachments/assets/17cc3eca-fee3-44f9-8e3a-01b8a4bba920" />
+<img width="347" height="306" alt="image" src="https://github.com/user-attachments/assets/2599fd74-e46e-4a1f-8e12-683ad9c2ef8d" />
+<img width="353" height="201" alt="image" src="https://github.com/user-attachments/assets/f050871c-3787-43f6-bc39-54eba5e9882f" />
